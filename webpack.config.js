@@ -53,7 +53,7 @@ var config = {
         //publicPath  : 'dev' === WEBPACK_ENV ? (__dirname + '/dist/'): '//s.happymmall.com/mall-fe/dist/',
 
         //线上写法
-        publicPath  : 'dev' === WEBPACK_ENV ? '/dist/': '//s.happymmall.com：8161/mall-fe/dist/',
+        publicPath  : 'dev' === WEBPACK_ENV ? '/dist/': '// 106.75.172.117：8161/mall-fe/dist/',
         filename    : 'js/[name].js'
     },
     externals : {
