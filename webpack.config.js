@@ -1,10 +1,16 @@
-
+/*
+* @Author: Rosen
+* @Date:   2017-05-08 15:28:19
+* @Last Modified by:   Rosen
+* @Last Modified time: 2018-03-24 09:45:59
+*/
 var webpack             = require('webpack');
 var ExtractTextPlugin   = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin   = require('html-webpack-plugin');
 
+
 // 环境变量配置，dev / online
- var WEBPACK_ENV         = process.env.WEBPACK_ENV || 'dev';
+var WEBPACK_ENV         = process.env.WEBPACK_ENV || 'dev';
 
 // 获取html-webpack-plugin参数的方法 
 var getHtmlConfig = function(name, title){
@@ -41,8 +47,13 @@ var config = {
     },
     output: {
         path        : __dirname + '/dist/',
-        //'dev' === WEBPACK_ENV ? '/dist/' : '//s.happymmall.com/mmall-fe/dist/'
-        publicPath  :'/dist/',
+        ////s.happymmall.com/mmall-fe/dist/    此处如果是用devserver来代理的话就写 /dist/  如果是打包则写成__dirname + '/dist/'  但是还是有点问
+
+        //本地写法
+        //publicPath  : 'dev' === WEBPACK_ENV ? (__dirname + '/dist/'): '//s.happymmall.com/mall-fe/dist/',
+
+        //线上写法
+        publicPath  : 'dev' === WEBPACK_ENV ? '/dist/': '//s.happymmall.com：8161/mall-fe/dist/',
         filename    : 'js/[name].js'
     },
     externals : {
@@ -50,16 +61,8 @@ var config = {
     },
     module: {
         loaders: [
-            { 
-             test: /\.css$/,
-             loader: ExtractTextPlugin.extract("style-loader","css-loader")
-            },
-            // { test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=100&name=resource/[name].[ext]' },
-            { 
-             test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/, 
-             loader: 'url-loader?limit=100&name=resource/[name].[ext]' 
-            },
-
+            { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader","css-loader") },
+           { test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=100&name=resource/[name].[ext]' },
             {
                 test: /\.string$/, 
                 loader: 'html-loader',
@@ -68,6 +71,7 @@ var config = {
                     removeAttributeQuotes : false
                 }
             }
+      
         ]
     },
     resolve : {
@@ -110,8 +114,7 @@ var config = {
         inline: true,
         proxy : {
             '**/*.do' : {
-                //test.happymmall.com
-                target: 'http://localhost:8080',
+                target: 'http://test.happymmall.com',
                 changeOrigin : true
             }
         }

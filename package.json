@@ -6,10 +6,9 @@
   "scripts": {
     "dev": "./node_modules/.bin/webpack-dev-server",
     "dev_win": "./node_modules/.bin/webpack-dev-server",
-    "dist": "WEBPACK_ENV=online ./node_modules/.bin/webpack",
-    "dist_win": "set WEBPACK_ENV=dev&& .\\node_modules\\.bin\\webpack"
+    "dist": "set WEBPACK_ENV=dev &&./node_modules/.bin/webpack -p",
+    "dist_win": "set WEBPACK_ENV=dev&& .\\node_modules\\.bin\\webpack -p"
   },
-
   "author": "lj",
   "license": "ISC",
   "devDependencies": {
