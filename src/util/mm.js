@@ -2,7 +2,7 @@
 'use strict';
 var Hogan = require('hogan.js');
 var conf = {
-    serverHost : ''
+    serverHost : 'http://106.75.172.117:8160/'
 };
 var _mm = {
     // 网络请求
